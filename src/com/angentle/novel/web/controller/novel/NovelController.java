@@ -43,7 +43,7 @@ public class NovelController extends GenericController{
 	* @return String    返回类型 
 	* @throws
 	 */
-	@RequestMapping("/chapterManager/{chapterId}")
+	@RequestMapping("/chapterManager/{novelId}")
 	public String publishedChapter(@PathVariable() String chapterId, ModelMap map){
 		
 		return "/publishedChapter";
