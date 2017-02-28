@@ -14,6 +14,14 @@ import com.angentle.novel.web.model.Author;
 import com.angentle.novel.web.model.AuthorExample;
 import com.angentle.novel.web.model.Novel;
 import com.angentle.novel.web.model.NovelExample;
+/**
+ * 
+* @ClassName: NovelServiceImpl 
+* @Description: 小说Service实现 
+* @author wenquan
+* @date 2017年2月28日 上午9:42:22 
+*
+ */
 @Service
 public class NovelServiceImpl extends GenericServiceImpl<Novel, String> implements NovelService{
 
@@ -28,13 +36,19 @@ public class NovelServiceImpl extends GenericServiceImpl<Novel, String> implemen
 	}
 
 	@Override
-	public List<Novel> selectNovels(String userId) {
+	public List<Novel> selectNovelsByAuthor(String userId) {
 		AuthorExample authorExample = new AuthorExample();
 		authorExample.createCriteria().andUserIdEqualTo(userId);
 		Author author = this.authorMapper.selectByExample(authorExample ).get(0);
 		NovelExample example = new NovelExample();
 		example.createCriteria().andAuthorIdEqualTo(author.getAuthorId());
 		return this.novelMapper.selectByExample(example );
+	}
+
+	@Override
+	public List<Novel> selectBySearch(Novel novel) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

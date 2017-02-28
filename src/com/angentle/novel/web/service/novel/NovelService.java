@@ -21,6 +21,9 @@ public interface NovelService extends GenericService<Novel, String>{
 	* @return Novel    返回类型 
 	* @throws
 	 */
-	public List<Novel> selectNovels(String userId);
+	public List<Novel> selectNovelsByAuthor(String userId);
+	
+	public List<Novel> selectBySearch(Novel novel);
+	
 	
 }
