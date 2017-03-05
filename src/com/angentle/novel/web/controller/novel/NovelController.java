@@ -1,5 +1,7 @@
 package com.angentle.novel.web.controller.novel;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -27,13 +29,25 @@ public class NovelController {
 	NovelService novelService;
 	
 	Logger logger = LoggerFactory.getLogger(NovelController.class);
+	/**
+	 * 
+	* @Title: searchNovel 
+	* @Description: 小说搜索 
+	* @param @param keyword
+	* @param @param map
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws
+	 */
 	@RequestMapping("/search")
 	public String searchNovel(
 			@RequestParam(value="keyword",required=false) String keyword,
 			ModelMap map){
 		Novel novel = new Novel();
 				//TODO;
-		this.novelService.selectBySearch(novel);
-		return "/novel/search";
+		novel.setNovelName(keyword);
+		List<Novel> novelList = this.novelService.selectBySearch(novel);
+		map.put("novelList", novelList);
+		return "/novel/searchResult";
 	}
 }
